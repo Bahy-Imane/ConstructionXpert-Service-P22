@@ -69,7 +69,6 @@ public class AuthenticationService {
         if (authentication.isAuthenticated()) {
             User user = userRepository.findByUsernameOrEmail(input.getUserNameOrEmail(), input.getUserNameOrEmail());
 
-
             String token = jwtService.generateToken(user, user.getRole());
             return LoginResponse.builder()
                     .token(token)
