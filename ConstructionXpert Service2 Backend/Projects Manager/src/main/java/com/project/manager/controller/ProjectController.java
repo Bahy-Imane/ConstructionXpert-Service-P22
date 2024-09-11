@@ -1,42 +1,48 @@
 package com.project.manager.controller;
 
-
 import com.project.manager.model.Project;
 import com.project.manager.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/project")
+@RequestMapping("/api/projects")
 public class ProjectController {
 
     @Autowired
     private ProjectService projectService;
 
+    @GetMapping("/all")
+    public ResponseEntity<List<Project>> getAllProjects() {
+        List<Project> projects = projectService.getAllProjects();
+        return new ResponseEntity<>(projects, HttpStatus.OK);
+    }
+
     @GetMapping
-    public List<Project> getAllProjects() {
-        return projectService.getAllProjects();
+    public ResponseEntity<Project> getProjectById(@RequestParam Long projectId) {
+        Project project = projectService.getProjectById(projectId);
+        return new ResponseEntity<>(project, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public Project getProjectById(@PathVariable Long id) {
-        return projectService.getProjectById(id);
+    @PostMapping("/add-project")
+    public ResponseEntity<Project> addProject(@RequestBody Project project) {
+        Project newProject = projectService.addProject(project);
+        return new ResponseEntity<>(newProject, HttpStatus.CREATED);
     }
 
-    @PostMapping
-    public Project addProject(@RequestBody Project project) {
-        return projectService.addProject(project);
+    @PutMapping("/update-project")
+    public ResponseEntity<Project> updateProject(@RequestParam Long projectId, @RequestBody Project project) {
+        Project updatedProject = projectService.updateProject(projectId, project);
+        return new ResponseEntity<>(updatedProject, HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
-    public Project updateProject(@PathVariable Long id, @RequestBody Project project) {
-        return projectService.updateProject(id, project);
-    }
-
-    @DeleteMapping("/{id}")
-    public void deleteProject(@PathVariable Long id) {
-        projectService.deleteProject(id);
+    @DeleteMapping("/delete-project")
+    public ResponseEntity<Void> deleteProject(@RequestParam Long projectId) {
+        projectService.deleteProject(projectId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

@@ -13,43 +13,38 @@ public class TaskService {
 
     @Autowired
     private TaskRepository taskRepository;
+
     @Autowired
     private ProjectClient projectClient;
-
 
     public List<Task> getAllTasks() {
         return taskRepository.findAll();
     }
 
-
-
-    public List<Task> getTaskByProjectId(Long id) {
-        return taskRepository.getTaskByProjectId(id);
+    public List<Task> getTasksByProjectId(Long projectId) {
+        return taskRepository.getTaskByProjectId(projectId);
     }
 
     public Task getTaskById(Long id) {
         return taskRepository.findById(id).orElseThrow();
     }
 
-
     public Task createTask(Task task) {
         if (projectClient.getProjectById(task.getProjectId()) != null) {
             return taskRepository.save(task);
         }
-        throw new RuntimeException("Project not found");
+        throw new RuntimeException("Projet introuvable");
     }
 
     public Task updateTask(Long id, Task task) {
-        Task taskToUpdate = taskRepository.findById(id).get();
+        Task taskToUpdate = taskRepository.findById(id).orElseThrow();
         taskToUpdate.setTaskTitle(task.getTaskTitle());
         taskToUpdate.setTaskDescription(task.getTaskDescription());
         taskToUpdate.setTaskStatus(task.getTaskStatus());
         return taskRepository.save(taskToUpdate);
     }
 
-
     public void deleteTask(Long id) {
         taskRepository.deleteById(id);
     }
-
 }

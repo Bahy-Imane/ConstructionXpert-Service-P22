@@ -13,37 +13,35 @@ public class ResourceService {
 
     @Autowired
     private ResourceRepository resourceRepository;
+
     @Autowired
     private TaskClient taskClient;
-
 
     public List<Resource> getAllResources() {
         return resourceRepository.findAll();
     }
 
-
-    public List<Resource> getResourceById(Long id) {
-        return resourceRepository.getResourcesByTaskId(id);
+    public List<Resource> getResourceByTaskId(Long taskId) {
+        return resourceRepository.getResourcesByTaskId(taskId);
     }
+
     public Resource createResource(Resource resource) {
         if (taskClient.getTaskById(resource.getTaskId()) != null) {
             return resourceRepository.save(resource);
         }
-        throw new RuntimeException("Task not found");
+        throw new RuntimeException("Tâche non trouvée");
     }
 
-    public Resource updateResource(Long id,Resource resource) {
-        Resource resource1=resourceRepository.findById(id).get();
-        resource1.setResourceName(resource.getResourceName());
-        resource1.setResourceType(resource.getResourceType());
-        resource1.setResourceQuantity(resource.getResourceQuantity());
-        resource1.setResourceProvider(resource.getResourceProvider());
-        return resourceRepository.save(resource1);
+    public Resource updateResource(Long resourceId, Resource resource) {
+        Resource existingResource = resourceRepository.findById(resourceId).orElseThrow(() -> new RuntimeException("Ressource non trouvée"));
+        existingResource.setResourceName(resource.getResourceName());
+        existingResource.setResourceType(resource.getResourceType());
+        existingResource.setResourceQuantity(resource.getResourceQuantity());
+        existingResource.setResourceProvider(resource.getResourceProvider());
+        return resourceRepository.save(existingResource);
     }
 
-
-    public void deleteResource(Long id) {
-        resourceRepository.deleteById(id);
+    public void deleteResource(Long resourceId) {
+        resourceRepository.deleteById(resourceId);
     }
-
 }
