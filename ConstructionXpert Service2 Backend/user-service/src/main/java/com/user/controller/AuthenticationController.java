@@ -49,12 +49,14 @@ public class AuthenticationController {
         try {
             User authenticatedUser = authenticationService.authenticate(loginUserDto);
             Role role = authenticatedUser.getRole();
-
             String jwtToken = jwtService.generateToken(authenticatedUser, role);
+
+
 
             LoginResponse loginResponse = new LoginResponse();
             loginResponse.setToken(jwtToken);
             loginResponse.setExpiresIn(jwtService.getExpirationTime());
+            loginResponse.setRole(role.name());
 
             return ResponseEntity.ok(jwtToken);
         } catch (UserNotFoundException ex) {

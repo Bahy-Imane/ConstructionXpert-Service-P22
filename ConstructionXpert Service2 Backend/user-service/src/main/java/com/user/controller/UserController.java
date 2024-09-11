@@ -17,7 +17,7 @@ public class UserController {
     private UserService userService;
 
 
-    @GetMapping("/all")
+    @GetMapping("/all-users")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.getAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
@@ -31,7 +31,7 @@ public class UserController {
     }
 
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/update-user/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
         user.setUserId(id);
         User updatedUser = userService.updateUser(user);
@@ -39,7 +39,7 @@ public class UserController {
     }
 
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete-user/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
