@@ -1,15 +1,15 @@
 package com.user.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.user.enums.Role;
+import lombok.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class LoginResponse {
     private String token;
-    private long expiresIn;
+    //private long expiresIn;
+    private Role role;
 }

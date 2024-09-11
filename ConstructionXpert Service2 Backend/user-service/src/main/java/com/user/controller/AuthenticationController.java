@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,20 +48,31 @@ public class AuthenticationController {
     @PostMapping("/login")
     public ResponseEntity<?> authenticate(@RequestBody LoginUserDto loginUserDto) {
         try {
-            User authenticatedUser = authenticationService.authenticate(loginUserDto);
-            Role role = authenticatedUser.getRole();
-
-            String jwtToken = jwtService.generateToken(authenticatedUser, role);
-
-            LoginResponse loginResponse = new LoginResponse();
-            loginResponse.setToken(jwtToken);
-            loginResponse.setExpiresIn(jwtService.getExpirationTime());
-
-            return ResponseEntity.ok(jwtToken);
+            LoginResponse authenticatedUser = authenticationService.authenticate(loginUserDto);
+            return ResponseEntity.ok(authenticatedUser);  // Return the full login response
         } catch (UserNotFoundException ex) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ex.getMessage());
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred during login.");
         }
     }
+//    public ResponseEntity<?> authenticate(@RequestBody LoginUserDto loginUserDto) {
+//        try {
+//            LoginResponse authenticatedUser = authenticationService.authenticate(loginUserDto);
+//            Role role = authenticatedUser.getRole();
+//
+//            String jwtToken = jwtService.generateToken((UserDetails) authenticatedUser, role);
+//
+//            LoginResponse loginResponse = new LoginResponse();
+//            loginResponse.setToken(jwtToken);
+//            loginResponse.setRole(role);
+//            //loginResponse.setExpiresIn(jwtService.getExpirationTime());
+//
+//            return ResponseEntity.ok(jwtToken);
+//        } catch (UserNotFoundException ex) {
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ex.getMessage());
+//        } catch (Exception ex) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred during login.");
+//        }
+//    }
 }
