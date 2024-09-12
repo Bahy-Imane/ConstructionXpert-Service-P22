@@ -6,6 +6,8 @@ import {RoleGuard} from "./core/services/role-guard";
 import {AuthGuard} from "./core/services/auth-guard";
 import {AdminDashboardComponent} from "./component/admin-dashboard/admin-dashboard.component";
 import {CustomerDashboardComponent} from "./component/customer-dashboard/customer-dashboard.component";
+import {ProjectFormComponent} from "./component/project-form/project-form.component";
+import {ProjectListComponent} from "./component/project-list/project-list.component";
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,7 +23,10 @@ export const routes: Routes = [
     component: CustomerDashboardComponent,
     canActivate: [AuthGuard, RoleGuard],
     data: { expectedRole: Role.CUSTOMER }
-  }
+  },
 
-
-]
+  {path:'projects', component:ProjectListComponent},
+  {path:'add', component:ProjectFormComponent},
+  {path:'edit/:id', component:ProjectFormComponent},
+  {path:'', component:ProjectListComponent}
+];

@@ -3,6 +3,7 @@ package com.project.manager.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
@@ -16,7 +17,7 @@ public class Project {
     private Long projectId;
     private String projectName;
     private String projectDescription;
-    private LocalDateTime projectStartDate;
-    private LocalDateTime projectEndDate;
+    private LocalDate projectStartDate;
+    private LocalDate projectEndDate;
 
 }

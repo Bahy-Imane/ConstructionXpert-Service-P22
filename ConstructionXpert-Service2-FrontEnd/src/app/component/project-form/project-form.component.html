@@ -1,0 +1,35 @@
+<form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label >Project Name:</label>
+    <input formControlName="projectName" type="text" required>
+    <div *ngIf="projectForm.get('projectName')&& projectForm.get('projectName')">
+      <small *ngIf="projectForm.get('projectName')">Project name is required</small>
+    </div>
+  </div>
+
+  <div>
+    <label >Project Description:</label>
+    <textarea formControlName="projectDescription" required></textarea>
+    <div *ngIf="projectForm.get('projectDescription') && projectForm.get('projectDescription')">
+      <small *ngIf="projectForm.get('projectDescription')">Project description is required</small>
+    </div>
+  </div>
+
+  <div>
+    <label >Start Date:</label>
+    <input formControlName="projectStartDate" type="date" required>
+    <div *ngIf="projectForm.get('projectStartDate') && projectForm.get('projectStartDate')">
+      <small *ngIf="projectForm.get('projectStartDate')">Start date is required</small>
+    </div>
+  </div>
+
+  <div>
+    <label >End Date:</label>
+    <input formControlName="projectEndDate" type="date" required>
+    <div *ngIf="projectForm.get('projectEndDate') && projectForm.get('projectEndDate')">
+      <small *ngIf="projectForm.get('projectEndDate')">End date is required</small>
+    </div>
+  </div>
+
+  <button type="submit">Submit</button>
+</form>
