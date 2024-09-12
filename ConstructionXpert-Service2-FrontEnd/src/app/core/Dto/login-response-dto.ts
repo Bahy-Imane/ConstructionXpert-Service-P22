@@ -1,5 +1,4 @@
-export class LoginResponse {
-  token !: string;
-  expiresIn !: number;
-  role !:string;
+export interface LoginResponse {
+  token : string;
+  role :string;
 }

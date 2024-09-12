@@ -6,7 +6,7 @@
 }
 
 .hero {
-  background-color:#0059b3;
+  background-color: #172f65;
   padding: 90px 20px;
 
 
@@ -66,12 +66,14 @@
   height: auto;
 }
 
-
+.features-section{
+  margin-top: 50px;
+}
 
 .features-section h2 {
   font-size: 2.5rem;
   margin-bottom: 20px;
-  color: #1a75ff;
+  color: #2490fd;
 }
 
 .features {
@@ -79,6 +81,7 @@
   justify-content: space-around;
   flex-wrap: wrap;
   gap: 20px;
+  margin-top: 60px;
 }
 
 .feature-card {
@@ -88,6 +91,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   padding-bottom: 10px;
+  border-top: none;
 }
 
 .feature-card .icon {
@@ -97,7 +101,7 @@
 
 .feature-card h3 {
   font-size: 1.5rem;
-  margin-bottom: 10px;
+  margin-top: 40px;
   font-weight: 500;
   color:black;
 }

@@ -3,7 +3,6 @@ package com.user.controller;
 import com.user.dto.AdminDTO;
 import com.user.dto.CustomerDTO;
 import com.user.dto.LoginUserDto;
-import com.user.enums.Role;
 import com.user.exception.UserNotFoundException;
 import com.user.dto.LoginResponse;
 import com.user.model.User;
@@ -13,14 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
 public class AuthenticationController {
 
-    private final JwtService jwtService;
+    private JwtService jwtService;
     private final AuthenticationService authenticationService;
 
     @Autowired
