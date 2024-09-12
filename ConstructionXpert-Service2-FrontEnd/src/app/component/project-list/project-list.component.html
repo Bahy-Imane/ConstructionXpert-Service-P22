@@ -1,5 +1,7 @@
 <p>project-list works!</p>
 <table>
+  <button (click)="addProject()">add</button>
+
   <thead>
   <tr>
     <th>ID</th>
@@ -16,7 +18,7 @@
     <td>{{ project.projectStartDate | date}}</td>
     <td>{{ project.projectEndDate | date}}</td>
     <td>
-      <button (click)="editProject()">Edit</button>
+      <button (click)="editProject(project.projectId)">Edit</button>
       <button (click)="deleteProject(project.projectId)">Delete</button>
     </td>
   </tr>
