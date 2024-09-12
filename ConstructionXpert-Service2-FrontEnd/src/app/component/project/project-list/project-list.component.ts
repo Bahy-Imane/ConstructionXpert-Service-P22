@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Project} from "../../core/model/project.model";
-import {ProjectService} from "../../core/services/project-service";
+import {Project} from "../../../core/model/project.model";
+import {ProjectService} from "../../../core/services/project-service";
 import {Router} from "@angular/router";
 import {DatePipe, NgForOf} from "@angular/common";
 

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ProjectService} from "../../core/services/project-service";
+import {ProjectService} from "../../../core/services/project-service";
 import {NgIf} from "@angular/common";
 
 @Component({

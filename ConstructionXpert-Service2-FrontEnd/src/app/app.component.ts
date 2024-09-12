@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {HomeComponent} from "./component/home/home.component";
-import {ProjectListComponent} from "./component/project-list/project-list.component";
+import {ProjectListComponent} from "./component/project/project-list/project-list.component";
 
 @Component({
   selector: 'app-root',

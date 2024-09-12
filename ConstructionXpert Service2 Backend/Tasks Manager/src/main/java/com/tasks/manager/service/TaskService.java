@@ -3,6 +3,7 @@ package com.tasks.manager.service;
 import com.tasks.manager.feignClient.ProjectClient;
 import com.tasks.manager.model.Task;
 import com.tasks.manager.repository.TaskRepository;
+import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,10 +31,14 @@ public class TaskService {
     }
 
     public Task createTask(Task task) {
-        if (projectClient.getProjectById(task.getProjectId()) != null) {
+        try {
+            projectClient.getProjectById(task.getProjectId());
             return taskRepository.save(task);
+        } catch (FeignException.NotFound e) {
+            throw new RuntimeException("Project not found with ID: " + task.getProjectId());
+        } catch (FeignException e) {
+            throw new RuntimeException("Error communicating with project service", e);
         }
-        throw new RuntimeException("Projet introuvable");
     }
 
     public Task updateTask(Long id, Task task) {
