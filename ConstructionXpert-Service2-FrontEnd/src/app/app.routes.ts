@@ -8,10 +8,12 @@ import {AdminDashboardComponent} from "./component/admin-dashboard/admin-dashboa
 import {CustomerDashboardComponent} from "./component/customer-dashboard/customer-dashboard.component";
 import {ProjectFormComponent} from "./component/project-form/project-form.component";
 import {ProjectListComponent} from "./component/project-list/project-list.component";
+import {SignUpComponent} from "./component/sign-up/sign-up.component";
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'signUp', component: SignUpComponent},
   {
     path: 'admin-dashboard',
     component: AdminDashboardComponent,
