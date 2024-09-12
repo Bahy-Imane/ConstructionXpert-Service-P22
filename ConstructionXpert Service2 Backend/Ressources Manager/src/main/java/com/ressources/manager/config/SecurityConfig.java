@@ -26,12 +26,13 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST, "/api/resources").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/api/resources/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/resources/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/api/resources").hasAnyRole("ADMIN", "CUSTOMER")
-                        .requestMatchers(HttpMethod.GET, "/api/resources/task/**").hasAnyRole("ADMIN", "CUSTOMER")
-                        .anyRequest().authenticated()
+//                        .requestMatchers(HttpMethod.POST, "/api/resources").hasRole("ADMIN")
+//                        .requestMatchers(HttpMethod.PUT, "/api/resources/**").hasRole("ADMIN")
+//                        .requestMatchers(HttpMethod.DELETE, "/api/resources/**").hasRole("ADMIN")
+//                        .requestMatchers(HttpMethod.GET, "/api/resources").hasAnyRole("ADMIN", "CUSTOMER")
+//                        .requestMatchers(HttpMethod.GET, "/api/resources/task/**").hasAnyRole("ADMIN", "CUSTOMER")
+//                        .anyRequest().authenticated()
+                                .anyRequest().permitAll()
                 );
 
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
