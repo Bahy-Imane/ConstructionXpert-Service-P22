@@ -6,7 +6,7 @@
 }
 
 .hero {
-  background-color: #172f65;
+  background-color:#0059b3;
   padding: 90px 20px;
 
 
@@ -66,14 +66,13 @@
   height: auto;
 }
 
-.features-section{
-  margin-top: 50px;
-}
+
 
 .features-section h2 {
   font-size: 2.5rem;
   margin-bottom: 20px;
-  color: #2490fd;
+  color: #1a75ff;
+  margin-top: 25px;
 }
 
 .features {
@@ -81,29 +80,31 @@
   justify-content: space-around;
   flex-wrap: wrap;
   gap: 20px;
-  margin-top: 60px;
 }
 
 .feature-card {
   background-color: #f1f1f1;
   border-radius: 10px;
   width: 30%;
+  height: 200px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   padding-bottom: 10px;
-  border-top: none;
+  margin-top: 30px;
 }
 
 .feature-card .icon {
   font-size: 3rem;
   margin-bottom: 10px;
+  padding-top: 30px;
 }
 
 .feature-card h3 {
   font-size: 1.5rem;
-  margin-top: 40px;
+  margin-bottom: 10px;
   font-weight: 500;
   color:black;
+  padding-top: 28px;
 }
 
 .feature-card p {
