@@ -9,6 +9,6 @@ import java.util.List;
 @FeignClient(name = "projects-manager")
 public interface ProjectClient {
 
-    @GetMapping("/api/project/{projectId}")
-    Project getProjectById(@PathVariable Long projectId);
+    @GetMapping("/api/projects/{projectId}")
+    Project getProjectById(@PathVariable("projectId") Long projectId);
 }
