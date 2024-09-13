@@ -7,7 +7,7 @@ import {Role} from "../enums/role";
 @Injectable({
   providedIn: 'root'
 })
-export class RoleGuardService implements CanActivate{
+export class RoleGuard implements CanActivate{
 
   constructor(private authService: AuthService, private router: Router) {}
 

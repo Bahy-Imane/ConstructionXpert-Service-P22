@@ -1,12 +1,13 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+
 import {CustomerDto} from "../Dto/customer-dto";
 import {User} from "../model/user.model";
 import {AdminDto} from "../Dto/admin-dto";
 import {LoginUserDto} from "../Dto/login-user-dto";
 import {LoginResponse} from "../Dto/login-response-dto";
 import {Role} from "../enums/role";
+import {Injectable} from "@angular/core";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ import {Role} from "../enums/role";
 export class AuthService {
 
 
-  private baseUrl = 'http://localhost:8080/api/auth';
+  private baseUrl = 'http://localhost:8888/USER-SERVICE/api/auth';
 
   constructor(private http: HttpClient) { }
 
@@ -41,7 +42,7 @@ export class AuthService {
     if (token) {
       const payload = JSON.parse(atob(token.split('.')[1]));
       console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-      return payload.personRole as Role;
+      return payload.role as Role;
     }
     return null;
   }
