@@ -6,6 +6,7 @@ export interface JwtPayload {
 
 export function decodeToken(token: string): JwtPayload | null {
   try {
+    // @ts-ignore
     const decoded = jwt_decode<JwtPayload>(token);
     return decoded;
   } catch (error) {
