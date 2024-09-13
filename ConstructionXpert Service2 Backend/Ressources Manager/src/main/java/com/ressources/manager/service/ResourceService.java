@@ -41,6 +41,9 @@ public class ResourceService {
         return resourceRepository.save(existingResource);
     }
 
+    public Resource getResourceById(Long resourceId) {
+        return resourceRepository.findById(resourceId).orElse(null);
+    }
     public void deleteResource(Long resourceId) {
         resourceRepository.deleteById(resourceId);
     }

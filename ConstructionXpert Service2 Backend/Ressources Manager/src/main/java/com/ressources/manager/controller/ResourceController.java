@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/resources")
+@CrossOrigin("*")
 public class ResourceController {
 
     @Autowired
@@ -20,6 +21,10 @@ public class ResourceController {
     public ResponseEntity<List<Resource>> getAllResources() {
         List<Resource> resources = resourceService.getAllResources();
         return new ResponseEntity<>(resources, HttpStatus.OK);
+    }
+    @GetMapping("{resourceId}")
+    public Resource getResource(@PathVariable("resourceId") Long resourceId) {
+        return resourceService.getResourceById(resourceId);
     }
 
     @GetMapping("/task")

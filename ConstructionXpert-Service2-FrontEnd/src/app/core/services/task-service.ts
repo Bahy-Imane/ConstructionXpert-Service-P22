@@ -20,7 +20,7 @@ export class TaskService {
   }
 
   getTaskById(taskId: number): Observable<any> {
-    return this.http.get(this.apiUrl + '?taskId=' + taskId);
+    return this.http.get(this.apiUrl + '/' + taskId);
   }
 
   createTask(task: any): Observable<any> {

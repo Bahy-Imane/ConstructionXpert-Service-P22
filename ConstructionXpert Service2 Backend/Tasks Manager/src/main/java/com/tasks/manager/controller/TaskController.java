@@ -29,8 +29,8 @@ public class TaskController {
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
-    @GetMapping
-    public ResponseEntity<Task> getTaskById(@RequestParam Long taskId) {
+    @GetMapping("{taskId}")
+    public ResponseEntity<Task> getTaskById(@PathVariable("taskId") Long taskId) {
         Task task = taskService.getTaskById(taskId);
         return new ResponseEntity<>(task, HttpStatus.OK);
     }
