@@ -22,6 +22,10 @@ public class ResourceController {
         List<Resource> resources = resourceService.getAllResources();
         return new ResponseEntity<>(resources, HttpStatus.OK);
     }
+    @GetMapping("{resourceId}")
+    public Resource getResource(@PathVariable("resourceId") Long resourceId) {
+        return resourceService.getResourceById(resourceId);
+    }
 
     @GetMapping("/task")
     public ResponseEntity<List<Resource>> getResourceByTaskId(@RequestParam Long taskId) {
